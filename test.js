@@ -1,4 +1,4 @@
-require.paths.push("/Users/kanaya/node");
+require.paths.push("/Users/kanaya/work/vps/ravy");
 require("Ravy");
 require_ravy();
 
@@ -43,3 +43,9 @@ var hoge = "abcdefghijklmn";
 hoge.each_char(function(str){
   console.log( str );
 });
+
+
+console.log("=== gsub ===");
+var a = "hogehogehoge";
+console.log(a.gsub("ogeh", "="))
+console.log(a.gsub(/o/, "="))

@@ -364,7 +364,11 @@ Ravy.methods.uniq = function uniq(func){
  * argument : RegExp, String
  * return   : String
  */
-Ravy.methods.gsub = function gsub(reg, str){ if(!str) str = "";return this.replace(new RegExp(reg, "g"), str)};
+Ravy.methods.gsub = function gsub(reg, str){
+  if(!str) str = "";
+  reg = Ravy.get_class(reg)=="RegExp" ? reg.source : reg;
+  return this.replace(new RegExp(reg, "g"), str);
+};
 
 
 /*
