@@ -20,7 +20,31 @@ Ravy = {
     };
     return object;
   },
-  
+
+  blank : function(object){
+    try{
+      if(object == null)          return true;
+      if(object == undefined)     return true;
+      if(isNaN(object))           return true;
+      if(object == "")            return true;
+      if(0 == object.size())      return true;
+    }catch( e ){
+      return false;
+    }
+  },
+
+  present : function(object){
+    try{
+      if(object == null)          return false;
+      if(object == undefined)     return false;
+      if(isNaN(object))           return false;
+      if(object == "")            return false;
+      if(0 == object.size())      return false;
+    }catch( e ){
+      return true;
+    }
+  },
+ 
   object_check : function(target, type){
     if(!target) throw new Error("no object error");
     type = type.to_a();
@@ -453,6 +477,22 @@ Ravy.methods.add = function add(){
 
 
 /*
+ * compact 
+ * addClass : Array
+ * argument : 
+ * return   : Array
+ */
+Ravy.methods.compact_func = function compact_func(array, self){ 
+  var compact_list = []
+  compact_list = array.select(function(obj){ return obj!=null || obj!=undefined });
+  return (self) ? array.clear().add(compact_list) : compact_list;
+};
+Ravy.methods.compact      = function compact(){     return Ravy.methods.compact_func(this.clone(), false) };
+Ravy.methods.__compact__  = function __compact__(){ return Ravy.methods.compact_func(this, true) };
+
+
+
+/*
  * flat
  * addClass : Array
  * argument : -
@@ -469,7 +509,7 @@ Ravy.methods.flat_func = function flat_func(array, self){
     };
   };
   _flat( array );
-  return (self) ? array.clear().add(flat_list) : flat_list;
+  return (self) ? array.clear().add(flat_list).compact() : flat_list.compact();
 };
 Ravy.methods.flat = function flat(){ return Ravy.methods.flat_func(this.clone(), false) };
 Ravy.methods.__flat__ = function __flat__(){ return Ravy.methods.flat_func(this, true) };
@@ -556,6 +596,8 @@ require_ravy = function(){
     flat            : Ravy.methods.flat,
     __flat__        : Ravy.methods.__flat__,
     clear           : Ravy.methods.clear_array,
+    compact         : Ravy.methods.compact,
+    __compact__     : Ravy.methods.__compact__,
     class_name      : Ravy.methods.class_name
   };
 

@@ -49,3 +49,29 @@ console.log("=== gsub ===");
 var a = "hogehogehoge";
 console.log(a.gsub("ogeh", "="))
 console.log(a.gsub(/o/, "="))
+
+
+console.log("====== blank =======")
+console.log(Ravy.blank(null))
+console.log(Ravy.blank(undefined))
+console.log(Ravy.blank(NaN))
+console.log(Ravy.blank(""))
+console.log(Ravy.blank({}))
+console.log(Ravy.blank([]))
+console.log(Ravy.blank(new Hash({})))
+
+console.log("====== present =======")
+console.log(Ravy.present(null))
+console.log(Ravy.present(undefined))
+console.log(Ravy.present(NaN))
+console.log(Ravy.present(""))
+console.log(Ravy.present({}))
+console.log(Ravy.present([]))
+console.log(Ravy.present(new Hash({})))
+
+console.log("==== compact ====")
+var a = [1,2,null,4,undefined,6,7,"",8,{}]
+console.log(a.compact())
+console.log(a)
+console.log(a.__compact__())
+console.log(a)
