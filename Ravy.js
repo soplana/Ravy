@@ -509,7 +509,7 @@ Ravy.methods.flat_func = function flat_func(array, self){
     };
   };
   _flat( array );
-  return (self) ? array.clear().add(flat_list).compact() : flat_list.compact();
+  return (self) ? array.clear().add(flat_list).__compact__() : flat_list.compact();
 };
 Ravy.methods.flat = function flat(){ return Ravy.methods.flat_func(this.clone(), false) };
 Ravy.methods.__flat__ = function __flat__(){ return Ravy.methods.flat_func(this, true) };
