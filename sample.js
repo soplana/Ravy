@@ -5,13 +5,7 @@
 * ----- Support -------------------
 *   Browser : Chrome, Firefox, Safari, Opera (latest version)
 *   OS      : Mac OS X 10.6.8~
-*   node.js : v0.4.8~ 
-*
-* ----- Contact ------------------
-*   Twitter : https://twitter.com/#!/soplana
-*
-* ----- license ------------------
-*   free
+*   node.js : v0.4.8 
 *
 *************************************************************/
 

@@ -483,12 +483,13 @@ Ravy.methods.add = function add(){
  * return   : Array
  */
 Ravy.methods.compact_func = function compact_func(array, self){ 
-  var compact_list = []
-  compact_list = array.select(function(obj){ return obj!=null || obj!=undefined });
-  return (self) ? array.clear().add(compact_list) : compact_list;
+  var compact_list = array.clone(); 
+  array.clear();
+  compact_list.each(function(obj){ if(obj!=null && obj!=undefined) array.push(obj) });
+  return array;
 };
 Ravy.methods.compact      = function compact(){     return Ravy.methods.compact_func(this.clone(), false) };
-Ravy.methods.__compact__  = function __compact__(){ return Ravy.methods.compact_func(this, true) };
+Ravy.methods.__compact__  = function __compact__(){ return Ravy.methods.compact_func(this, false) };
 
 
 
@@ -509,7 +510,7 @@ Ravy.methods.flat_func = function flat_func(array, self){
     };
   };
   _flat( array );
-  return (self) ? array.clear().add(flat_list).__compact__() : flat_list.compact();
+  return (self) ? array.clear().add(flat_list) : flat_list;
 };
 Ravy.methods.flat = function flat(){ return Ravy.methods.flat_func(this.clone(), false) };
 Ravy.methods.__flat__ = function __flat__(){ return Ravy.methods.flat_func(this, true) };
